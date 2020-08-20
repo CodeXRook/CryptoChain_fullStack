@@ -1,5 +1,6 @@
 class Block {
-    constructor(){
-        
+    constructor(timestamp, lastHash, hash, data) {
+        this.timestamp = timestamp;
+
     }
 }
