@@ -29,6 +29,12 @@ describe('Block', () => {
     });
 
     describe('mineBlock()', () => {
-        const
+        const lastBlock = Block.genesis();
+        const data = "mined data";
+        const mineBlock = Block.mineBlock({ lastBlock, data});
+
+        it('returns a Block instance', () => {
+
+        })
     })
 });
