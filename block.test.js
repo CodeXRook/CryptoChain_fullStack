@@ -46,7 +46,7 @@ describe('Block', () => {
         });
 
         it('sets a `timestamp`', () =>{
-            
-        })
+            expect(minedBlock.timestamp).not.toEqual(undefined);
+        });
     });
 });
