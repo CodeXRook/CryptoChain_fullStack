@@ -13,4 +13,8 @@ describe('Block', () => {
         expect(block.hash).toEqual(hash);
         expect(block.data).toEqual(data);
     });
+
+    describe('genesis()', () => {
+        const genesisBlock = Block.genesis(); 
+    })
 });
