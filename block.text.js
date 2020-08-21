@@ -24,7 +24,7 @@ describe('Block', () => {
 
         it('returns the genesis data', () => {
             expect(genesisBlock).toEqual(GENESIS_DATA);
-        })
+        });
 
     });
 });
