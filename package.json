@@ -1,7 +1,6 @@
 {
   "name": "cryptochain",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll"
@@ -11,5 +10,15 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^23.6.0"
-  }
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeXRook/CryptoChain_Backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CodeXRook/CryptoChain_Backend/issues"
+  },
+  "homepage": "https://github.com/CodeXRook/CryptoChain_Backend#readme",
+  "description": ""
 }
