@@ -6,7 +6,10 @@ describe('Block', ()=> {
     const block = new Block ({timestamp, lastHash, hash, data});
 
     it('has a timestamp, lastHash hash, and data property', () => {
-
+        expect(block.timestamp).toEqual(timestamp);
+        expect(block.timestamp).toEqual(timestamp);
+        expect(block.timestamp).toEqual(timestamp);
+        expect(block.timestamp).toEqual(timestamp);
 
     });
 });
