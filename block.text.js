@@ -4,4 +4,9 @@ describe('Block', ()=> {
     const hash = 'bar-hash';
     const data = ['blockchain', 'data'];
     const block = new Block ({timestamp, lastHash, hash, data});
+
+    it('has a timestamp, lastHash hash, and data property', () => {
+
+
+    });
 });
