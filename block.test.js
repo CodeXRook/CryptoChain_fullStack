@@ -36,5 +36,9 @@ describe('Block', () => {
         it('returns a Block instance', () => {
            expect(minedBlock instanceof Block).toBe(true);
         });
+
+        it('sets the `lastHash` to be the `hash` of the lastBlock', () => ) {
+            
+        }
     });
 });
