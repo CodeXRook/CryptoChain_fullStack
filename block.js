@@ -9,7 +9,7 @@ class Block {
     }
 
     static genesis() {
-        return new Block ();
+        return new this (GENESIS_DATA);
         
     }
 }
