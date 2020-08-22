@@ -1,0 +1,1 @@
+const crytpoHash = require('./crypto-hash');
