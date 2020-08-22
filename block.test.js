@@ -48,5 +48,9 @@ describe('Block', () => {
         it('sets a `timestamp`', () =>{
             expect(minedBlock.timestamp).not.toEqual(undefined);
         });
+
+        it('creates a SHA-256 `hash` based on the proper inputs', () => {
+            
+        })
     });
 });
