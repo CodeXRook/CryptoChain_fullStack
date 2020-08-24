@@ -83,10 +83,16 @@ describe('Blockchain', () => {
         });
     });
 
-    describe('when the chain is longer', () => {
+    describe('when the new chain is longer', () => {
+        beforeEach(() => {
+           newChain.addBlock({ data: 'Bears'});
+           newChain.addBlock({ data: 'Beets'});
+           newChain.addBlock({ data: 'Batlestar Galactica' });
+        });
+
      describe('and the chain is invalid', () => {
          it('does not replace the chain', () => {
-
+          newChain.chain[2].hash = 'some-fake-hash';
          });
      });
 
