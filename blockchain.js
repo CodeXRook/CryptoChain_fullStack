@@ -16,6 +16,13 @@ addBlock({ data }) {
  }
 
     replaceChain(chain) {
+        if (chain.length <= this.chain.length) {
+            return;
+        }
+
+        if (!Blockchain.isValidChain(chain)) {
+            return;
+        }
 
         this.chain = chain;
 
