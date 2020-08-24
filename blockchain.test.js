@@ -21,6 +21,8 @@ describe('Blockchain', () => {
     });
 
     describe('isValidChain()', () => {
-
+        describe('when the chain does not start with the genesis block', () => {
+            it('returns false', () => {});
+        });
     });
 });
