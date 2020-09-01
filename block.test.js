@@ -1,5 +1,5 @@
 const Block = require('./block');
-const { GENESIS_DATA } = require('./config');
+const { GENESIS_DATA, MINE_RATE } = require('./config');
 const cryptoHash = require('./crypto-hash');
 
 describe('Block', () => {
@@ -71,5 +71,9 @@ describe('Block', () => {
             expect(minedBlock.hash.substring(0, minedBlock.difficulty))
             .toEqual('0'.repeat(minedBlock.difficulty));
         });
+    });
+
+    describe('adjustDifficulty()', () => {
+
     });
 });
