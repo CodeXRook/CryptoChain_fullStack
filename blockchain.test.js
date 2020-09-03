@@ -1,18 +1,15 @@
 const Blockchain = require('./blockchain');
 const Block = require('./block');
+const cryptoHash = require('./crypto-hash');
 
 describe('Blockchain', () => {
     let blockchain, newChain, originalChain;
-    
     beforeEach(() => {
         blockchain = new Blockchain();
         newChain = new Blockchain();
-
         originalChain = blockchain.chain;
     });
     
-    
-
     it('contains a `chain` Array instance', () => {
         expect(blockchain.chain instanceof Array).toBe(true);
     });
@@ -45,7 +42,6 @@ describe('Blockchain', () => {
                 blockchain.addBlock({ data: 'Battlestar Galactica' });
             });
 
-
             describe('and a lastHash reference has changed', () => {
                 it('returns a false', () => {
                     blockchain.chain[2].lastHash = 'broken-lastHash';
@@ -60,6 +56,23 @@ describe('Blockchain', () => {
                     blockchain.chain[2].lastHash = 'some-bad-and-evil-data';
 
                     expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
+                });
+            });
+
+            describe('and the chain contains a block with a jumped difficulty', () => {
+                it('returns false', () => {
+                    const lastBlock = blockchain.chain[blockchain.chain.length-1];
+                    const lastHash = lastBlock.hash;
+                    const timestamp = Date.now();
+                    const nonce = 0;
+                    const data = [];
+                    const difficulty = lastBlock.difficulty -3;
+
+                    const hash = cryptoHash(timestamp, lastHash, difficulty, nonce, data);
+
+                    const badBlock = new Block({
+                        timestamp, lastHash, hash, nonce, difficulty, data 
+                    });
                 });
             });
 
