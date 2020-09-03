@@ -12,3 +12,4 @@ const cryptoHash = (...inputs) => {
 
 
 module.exports = cryptoHash;
+
