@@ -1,5 +1,5 @@
 # CryptoChain_fullStack
-crypto currency full stack front and backend
+crypto currency full stack front and backend.
 
     Code a full-on backend with test-driven development.
     Write a full test suite for the backend.
