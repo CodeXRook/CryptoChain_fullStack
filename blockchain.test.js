@@ -69,7 +69,7 @@ describe('Blockchain', () => {
                     const difficulty = lastBlock.difficulty -3;
                     const hash = cryptoHash(timestamp, lastHash, difficulty, nonce, data);
                     const badBlock = new Block({
-                        timestamp, lastHash, hash, nonce, difficulty, data 
+                       timestamp, lastHash, hash, nonce, difficulty, data 
                     });
 
                     blockchain.chain.push(badBlock);
