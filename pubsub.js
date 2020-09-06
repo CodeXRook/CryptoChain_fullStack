@@ -16,15 +16,15 @@ class PubSub {
 
         this.pubnub.subscribe({ channels: Object.values(CHANNELS) });
 
-        this.pubnub.addListener(this.listener);
+        this.pubnub.addListener(this.listener());
     }
 
     listener() {
         return {
             message: messageObject => {
-                const { channels, message } = messageObject;
+                const { channel, message } = messageObject;
 
-                console.log(`Message received. Channel: ${channel}. Message:${message}`);
+                console.log(`Message received. Channel: ${channel}. Message: ${message}`);
             }
         };
     }
