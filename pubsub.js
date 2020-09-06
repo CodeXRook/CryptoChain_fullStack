@@ -12,7 +12,7 @@ const CHANNELS = {
 
 class PubSub {
     constructor() {
-        this.pubnub = new PubNub(creadentials);
+        this.pubnub = new PubNub(credentials);
 
         this.pubnub.subscribe({ channels: Object.values(CHANNELS) });
 
