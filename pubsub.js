@@ -6,10 +6,15 @@ const credentials = {
  secretKey: 'sec-c-YjlhMzM3OGItNGE5NS00NWMxLWFhYjItOWJlMjcwNjAxYzVj'
 };
 
+const CHANNELS = {
+    TEST: 'TEST'
+};
 
 class PubSub {
     constructor() {
         this.pubnub = new PubNub(creadentials);
+
+        this.pubnub.subscribe({ channeks: [CHANNELS.TEST] });
     }
 }
 
