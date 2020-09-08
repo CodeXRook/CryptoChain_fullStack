@@ -45,7 +45,9 @@ const CHANNELS = {
 };
 
 class PubSub{
-    constructor(){
+    constructor({ blockchain }){
+        this.blockchain = blockchain;
+
         this.publisher = redis.createClient();
         this.subscriber = redis.createClient();
 
@@ -59,6 +61,29 @@ class PubSub{
 
     handleMessage(channel, message) {
         console.log(`Message received. Channel: ${channel}. Message: ${message}.`);
+
+        const parsedMessage = JSON.parse(message);
+
+        if(channel == CHANNELS.BLOCKCHAIN) {
+            this.blockchain.replaceChain(parsedMessage);
+        }
+    }
+
+    subscribeToChannels(){
+        Object.values(CHANNELS).forEach(channel => {
+            this.subscriber.subscribe(channel);
+        });
+    }
+
+    publish({ channels, message }) {
+        this.publisher.publish(channel, message);
+    }
+
+    broadcastChain(){
+        this.publish({
+            channel: CHANNELS.BLOCKCHAIN,
+            message: JSON.stringify(this.blockchain.chain)
+        });
     }
 }
 
