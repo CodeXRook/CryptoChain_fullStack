@@ -83,7 +83,7 @@ describe('Block', () => {
     describe('adjustDifficulty()', () => {
         it('raises the difficu;ty for a quickly mined block', () => {
             expect(Block.adjustDifficulty({
-                originalBlock: block, timestamp: block.timestamp + MINE_RATE -100
+                originalBlock: block, timestamp: block.timestamp + MINE_RATE - 100
             })).toEqual(block.difficulty+1);
         });
 
