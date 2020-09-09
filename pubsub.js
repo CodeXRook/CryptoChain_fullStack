@@ -75,7 +75,7 @@ class PubSub{
         });
     }
 
-    publish({ channels, message }) {
+    publish({ channel, message }) {
         this.publisher.publish(channel, message);
     }
 
