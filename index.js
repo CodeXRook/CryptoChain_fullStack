@@ -1,11 +1,15 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const request = require('request');
 const Blockchain = require('./blockchain');
 const PubSub = require('./pubsub');
 
 const app = express();
 const blockchain = new Blockchain();
 const pubsub = new PubSub({ blockchain });
+
+const DEFAULT_PORT = 3000;
+const ROOT_NODE_ADDRESS = `http://localhost:${ DEFAULT_PORT}`;
 
 setTimeout(() => pubsub.broadcastChain(), 1000);
 
@@ -25,7 +29,6 @@ app.post('/api/mine', (req, res) => {
     res.redirect('/api/blocks');
 });
 
-const DEFAULT_PORT = 3000;
 let PEER_PORT;
 
 if(process.env.GENERATE_PEER_PORT === 'ture') {
