@@ -1,5 +1,9 @@
 const Transaction = require('./transaction');
 
-describe('Transaction,'() =>{
-    
-})
+describe('Transaction',() => {
+    let transaction; senderWallet, recipient, amount;
+
+    beforeEach() => {
+        w
+    }
+});
