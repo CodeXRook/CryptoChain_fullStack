@@ -23,9 +23,9 @@ describe('Wallet', () => {
 
         it('varifires a signature', () => {
             verifySignature({
-                publicKey,
+                publicKey: wallet.publicKey,
                 data, 
-                signature
+                signature:
             })
         });
 
