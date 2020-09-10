@@ -12,8 +12,21 @@ describe('Wallet', () => {
     });
 
     it('has a `publicKey`', () => {
-        console.log(wallet.publicKey);
+       
 
         expect(wallet).toHaveProperty('publicKey');
+    });
+
+    describe('signing data', () => {
+        const data = 'foobar';
+
+        it('varifires a signatur', () => {
+
+        });
+
+        it('does not verify a invalid signature', () => {
+
+        });
+
     });
 });
