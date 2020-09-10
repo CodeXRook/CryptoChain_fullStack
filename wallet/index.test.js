@@ -1,4 +1,5 @@
 const Wallet = require('./index');
+const { verifySignature } = require('../util');
 
 describe('Wallet', () => {
     let wallet;
@@ -20,8 +21,12 @@ describe('Wallet', () => {
     describe('signing data', () => {
         const data = 'foobar';
 
-        it('varifires a signatur', () => {
-
+        it('varifires a signature', () => {
+            verifySignature({
+                publicKey,
+                data, 
+                signature
+            })
         });
 
         it('does not verify a invalid signature', () => {
