@@ -22,15 +22,21 @@ describe('Wallet', () => {
         const data = 'foobar';
 
         it('varifires a signature', () => {
-            verifySignature({
-                publicKey: wallet.publicKey,
-                data, 
-                signature:
-            })
+            expect(
+                verifySignature({
+                    publicKey: wallet.publicKey,
+                    data, 
+                    signature: wallet.sign(data)
+                })
+            ).toBe(true);   
         });
 
         it('does not verify a invalid signature', () => {
-
+            expect(
+                verifySignature({
+                    
+                })
+            )
         });
 
     });
