@@ -4,6 +4,8 @@ const { ec } = require('../util');
 class Wallet {
     constructor() {
         this.balance = STARTING_BALANCE;
+
+        const keyPair = ec.genKeyPair();
     }
 };
 
