@@ -35,8 +35,10 @@ describe('Wallet', () => {
             expect(
                 verifySignature({
                     publicKey: wallet.publicKey,
+                    data,
+                    signature: new Wallet().sign(data)
                 })
-            )
+            ).toBe(false);
         });
 
     });
