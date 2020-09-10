@@ -34,7 +34,7 @@ describe('Wallet', () => {
         it('does not verify a invalid signature', () => {
             expect(
                 verifySignature({
-                    
+                    publicKey: wallet.publicKey,
                 })
             )
         });
