@@ -115,10 +115,10 @@ describe("Transaction", () => {
 
     it('subtracts the amount from the original sender output amount', () => {
       expect(transaction.outputMap[senderWallet.publicKey])
-        .toEqual(originalSenderOutput - nextAmount);
+      .toEqual(originalSenderOutput - nextAmount);
     });
 
-    it('maintains a total output that matches the inpiut amount', () => {
+    it('maintains a total output that matches the input amount', () => {
       expect( 
         Object.values(transaction.outputMap)
           .reduce((total, outputAmount) => total + outputAmount)
