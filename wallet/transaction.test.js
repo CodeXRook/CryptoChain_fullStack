@@ -95,7 +95,7 @@ describe("Transaction", () => {
     });
   });
    
-  describe('update()',() => {
+  describe('update()', () => {
     let originalSignature, originalSenderOutput, nextRecipient, nextAmount;
 
     beforeEach(() => {
@@ -105,7 +105,7 @@ describe("Transaction", () => {
       nextAmount = 50;
 
       transaction.update({
-      senderWallet, recipient: nextRecipient, amount: nextAmount
+        senderWallet, recipient: nextRecipient, amount: nextAmount
       });
     });
 
@@ -119,10 +119,10 @@ describe("Transaction", () => {
     });
 
     it('maintains a total output that matches the input amount', () => {
-      expect( 
+      expect(
         Object.values(transaction.outputMap)
           .reduce((total, outputAmount) => total + outputAmount)
-         ).toEqual(transaction.input.amount);
+       ).toEqual(transaction.input.amount);
     });
 
     it('re-signs the transaction', () => {
