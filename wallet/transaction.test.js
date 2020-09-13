@@ -107,7 +107,7 @@ describe("Transaction", () => {
         }).toThrow('Amount exceeds balance');
       });
     });
-    
+
 
     describe('and the amount is valid', () => {
       beforeEach(() => {
@@ -139,6 +139,10 @@ describe("Transaction", () => {
   
       it('re-signs the transaction', () => {
         expect(transaction.input.signature).not.toEqual(originalSignature);
+      });
+
+      describe('and another udate for the same recipient', () => {
+
       });
     });
   });
