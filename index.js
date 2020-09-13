@@ -74,6 +74,7 @@ const syncWithRootState = () => {
         const rootTransactionPoolMap = JSON.parse(body);
 
         console.log('replace transaction pool map on a synce with', rootTransactionPoolMap);
+        transactionPool.setMap(rootTransactionPoolMap);
     }
   });
 };
@@ -89,7 +90,7 @@ app.listen(PORT, () => {
     console.log(`listening at localhost:${PORT}`)
 
     if (PORT !== DEFAULT_PORT) {
-        syncChains();
+        syncWithRootState();
     }
    
 });
