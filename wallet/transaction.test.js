@@ -99,8 +99,15 @@ describe("Transaction", () => {
     let originalSignature, originalSenderOutput, nextRecipient, nextAmount;
 
     describe('and the amount is invalid', () => {
-
+      it('throw an error', () => {
+        expect(() => {
+          transaction.update({
+            senderWallet, recipient: 'foo', amount: 999999
+          })
+        }).toThrow('Amount exceeds balance');
+      });
     });
+    
 
     describe('and the amount is valid', () => {
       beforeEach(() => {
