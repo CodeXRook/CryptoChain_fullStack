@@ -61,6 +61,8 @@ class Transaction {
 
         return true;
     }
+
+    static rewardTransaction()
 }
 
 module.exports = Transaction;
