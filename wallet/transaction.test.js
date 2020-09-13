@@ -98,11 +98,8 @@ describe('Transaction', () => {
     describe('and the amount is invalid', () => {
       it('throw an error', () => {
         expect(() => {
-          transaction.update({
-            senderWallet,
-            recipient: 'foo',
-            amount: 999999,
-          });
+          transaction.update({senderWallet, recipient: 'foo', amount: 999999
+          })
         }).toThrow('Amount exceeds balance');
       });
     });
@@ -114,7 +111,8 @@ describe('Transaction', () => {
         nextRecipient = 'next-recipient';
         nextAmount = 50;
 
-        transaction.update({senderWallet, recipient: nextRecipient, amount: nextAmount
+        transaction.update({
+          senderWallet, recipient: nextRecipient, amount: nextAmount
         });
       });
 
@@ -129,9 +127,8 @@ describe('Transaction', () => {
 
       it('maintains a total output that matches the input amount', () => {
         expect(
-          Object.values(transaction.outputMap).reduce(
-            (total, outputAmount) => total + outputAmount
-          )
+          Object.values(transaction.outputMap)
+          .reduce((total, outputAmount) => total + outputAmount)
         ).toEqual(transaction.input.amount);
       });
 
@@ -148,14 +145,15 @@ describe('Transaction', () => {
             senderWallet, recipient: nextRecipient, amount: addedAmount
           });
         });
-        
-      it('adds to the recipient amount', () => {
-          expect(transaction.outputMap[nextRecipient].toEqual(nextAmount + addedAmount);
+
+        it('adds to the recipient amount', () => {
+          expect(transaction.outputMap[nextRecipient])
+            .toEqual(nextAmount + addedAmount);
         });
 
         it('subtracts the amount from the original sender output amount', () => {
           expect(transaction.outputMap[senderWallet.publicKey])
-           .toEqual(originalSenderOutput - nextAmount - addedAmount);
+            .toEqual(originalSenderOutput - nextAmount - addedAmount);
         });
       });
     });
