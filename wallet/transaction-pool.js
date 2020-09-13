@@ -7,7 +7,7 @@ class TransactionPool {
     }
 
     clear() {
-        
+        this.transactionMap = {};
     }
 
     setTransaction(transaction) {
