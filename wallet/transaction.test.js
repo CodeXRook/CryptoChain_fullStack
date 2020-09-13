@@ -158,6 +158,15 @@ describe('Transaction', () => {
       });
     });
   });
+
+  describe('rewardTransaction()', () => {
+    let rewardTransaction, minerWallet;
+
+    beforeEach(() => {
+      minerWallet = new Wallet();
+      rewardTransaction = Transaction.rewardTransaction()
+    });
+  });
 });
 
 

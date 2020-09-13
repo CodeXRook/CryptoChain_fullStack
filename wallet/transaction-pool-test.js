@@ -61,7 +61,7 @@ describe('TransactionPool', () => {
         transactionPool.setTransaction(transaction);
       }
     });
-
+    
     it('returns valid transaction', () => {
       expect(transactionPool.validTransactions()).toEqual(validTransactions);
     });
