@@ -2,7 +2,7 @@ const Transaction = require('./transaction');
 const Wallet = require('./index');
 const { verifySignature } = require('../util');
 
-describe("Transaction", () => {
+describe('Transaction', () => {
   let transaction, senderWallet, recipient, amount;
 
   beforeEach(() => {
@@ -33,8 +33,6 @@ describe("Transaction", () => {
   });
 
   describe('input', () => {
-
-
     it('has an `input`', () => {
       expect(transaction).toHaveProperty('input');
     });
@@ -52,49 +50,48 @@ describe("Transaction", () => {
         verifySignature({
           publicKey: senderWallet.publicKey,
           data: transaction.outputMap,
-          signature: transaction.input.signature,
+          signature: transaction.input.signature
         })
       ).toBe(true);
     });
-});
-
+  });
 
   describe('validTransaction()', () => {
     let errorMock;
 
     beforeEach(() => {
-        errorMock = jest.fn();
+      errorMock = jest.fn();
 
-        global.console.error = errorMock;
+      global.console.error = errorMock;
     });
 
     describe('when the transaction is valid', () => {
-        it('returns true', () =>{
-            expect(Transaction.validTransaction(transaction)).toBe(true);
-        });
+      it('returns true', () => {
+        expect(Transaction.validTransaction(transaction)).toBe(true);
+      });
     });
 
     describe('when the transaction is invalid', () => {
-        describe('and a transaction outputMap value is invalid', () => {
-            it('returns false and logs an error', () => {
-                transaction.outputMap[senderWallet.publicKey] = 999999;
+      describe('and a transaction outputMap value is invalid', () => {
+        it('returns false and logs an error', () => {
+          transaction.outputMap[senderWallet.publicKey] = 999999;
 
-                expect(Transaction.validTransaction(transaction)).toBe(false);
-                expect(errorMock).toHaveBeenCalled();
-            });
+          expect(Transaction.validTransaction(transaction)).toBe(false);
+          expect(errorMock).toHaveBeenCalled();
         });
+      });
 
-        describe('anda the transaction input signature is invalid', () => {
-            it('returns false and logs an error', () => {
-                transaction.input.signature = new Wallet().sign('data');
-                
-                expect(Transaction.validTransaction(transaction)).toBe(false);
-                expect(errorMock).toHaveBeenCalled();
-            });
+      describe('and  the transaction input signature is invalid', () => {
+        it('returns false and logs an error', () => {
+          transaction.input.signature = new Wallet().sign('data');
+
+          expect(Transaction.validTransaction(transaction)).toBe(false);
+          expect(errorMock).toHaveBeenCalled();
         });
+      });
     });
   });
-   
+
   describe('update()', () => {
     let originalSignature, originalSenderOutput, nextRecipient, nextAmount;
 
@@ -102,12 +99,13 @@ describe("Transaction", () => {
       it('throw an error', () => {
         expect(() => {
           transaction.update({
-            senderWallet, recipient: 'foo', amount: 999999
-          })
+            senderWallet,
+            recipient: 'foo',
+            amount: 999999,
+          });
         }).toThrow('Amount exceeds balance');
       });
     });
-
 
     describe('and the amount is valid', () => {
       beforeEach(() => {
@@ -115,34 +113,50 @@ describe("Transaction", () => {
         originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
         nextRecipient = 'next-recipient';
         nextAmount = 50;
-  
-        transaction.update({
-          senderWallet, recipient: nextRecipient, amount: nextAmount
+
+        transaction.update({senderWallet, recipient: nextRecipient, amount: nextAmount
         });
       });
-  
+
       it('outputs the amount to the next recipient', () => {
         expect(transaction.outputMap[nextRecipient]).toEqual(nextAmount);
       });
-  
+
       it('subtracts the amount from the original sender output amount', () => {
-        expect(transaction.outputMap[senderWallet.publicKey])
-        .toEqual(originalSenderOutput - nextAmount);
+        expect(transaction.outputMap[senderWallet.publicKey]).toEqual(originalSenderOutput - nextAmount
+        );
       });
-  
+
       it('maintains a total output that matches the input amount', () => {
         expect(
-          Object.values(transaction.outputMap)
-            .reduce((total, outputAmount) => total + outputAmount)
-         ).toEqual(transaction.input.amount);
+          Object.values(transaction.outputMap).reduce(
+            (total, outputAmount) => total + outputAmount
+          )
+        ).toEqual(transaction.input.amount);
       });
-  
+
       it('re-signs the transaction', () => {
         expect(transaction.input.signature).not.toEqual(originalSignature);
       });
 
-      describe('and another udate for the same recipient', () => {
+      describe('and another update for the same recipient', () => {
+        let addedAmount;
 
+        beforeEach(() => {
+          addedAmount = 80;
+          transaction.update({
+            senderWallet, recipient: nextRecipient, amount: addedAmount
+          });
+        });
+        
+      it('adds to the recipient amount', () => {
+          expect(transaction.outputMap[nextRecipient].toEqual(nextAmount + addedAmount);
+        });
+
+        it('subtracts the amount from the original sender output amount', () => {
+          expect(transaction.outputMap[senderWallet.publicKey])
+           .toEqual(originalSenderOutput - nextAmount - addedAmount);
+        });
       });
     });
   });
