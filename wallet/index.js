@@ -17,6 +17,13 @@ class Wallet {
     }
 
     createTransaction({ recipient, amount }) {
+      if (chain) {
+        this.balance = Wallet.calculateBalance({
+          chain,
+          address: this.publicKey
+        });
+      }
+
       if (amount > this.balance) {
         throw new Error('Amount exceeds balance');
       }
