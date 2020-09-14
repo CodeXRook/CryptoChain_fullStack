@@ -6,13 +6,15 @@ const Wallet = require('../wallet');
 const Transaction = require('../wallet/transaction');
 
 describe('Blockchain', () => {
-  let blockchain, newChain, originalChain;
+  let blockchain, newChain, originalChain, errorMock;
 
   beforeEach(() => {
     blockchain = new Blockchain();
     newChain = new Blockchain();
+    errorMock = jest.fn();
 
     originalChain = blockchain.chain;
+    global.console.error = errorMock;
   });
 
   it('contains a `chain` Array instance', () => {
@@ -170,41 +172,44 @@ describe('Blockchain', () => {
     });
 
     describe('and the transaction data has multiple rewards', () => {
-      it('returns false', () => {
+      it('returns false and logs an error ', () => {
         newChain.addBlock({data: [transaction, rewardTransaction, rewardTransaction] });
 
         expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);
+        expect(errorMock).toHaveBeenCalled();
       });
     });
 
     describe('and the transaction data has at least one malformed outputMap', () => {
       describe('and the transaction is not a reward transaction', () => {
-        it('returns false', () => {
+        it('returns false and it logs an error', () => {
           transaction.outputMap[wallet.publicKey] = 999999;
 
           newChain.addBlock({ data: [transaction, rewardTransaction] });
 
           expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);
+          expect(errorMock).toHaveBeenCalled();
         });
       });
 
       describe('and the transaction is a reward transaction', () => {
-        it('returns false', () => {
+        it('returns false and logs an error', () => {
           rewardTransaction.outputMap[wallet.publicKey] = 999999;
 
           newChain.addBlock({ data: [transaction, rewardTransaction] });
 
           expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);
+          expect(errorMock).toHaveBeenCalled();
         });
       });
     });
 
     describe('and the transaction data has at least one malformed input', () => {
-      it('returns false', () => {});
+      it('returns false and logs an error', () => {});
     });
 
     describe('and a block contains mutiple identical transactions', () => {
-      it('returns false', () => {});
+      it('returns false and logs an error', () => {});
     });
   });
 });

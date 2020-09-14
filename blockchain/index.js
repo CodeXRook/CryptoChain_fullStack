@@ -1,4 +1,5 @@
 const Block = require('./block');
+const  Transaction = require('../wallet/transaction');
 const { cryptoHash } = require('../util');
 const { REWARD_INPUT, MINING_REWARD } = require('../config');
 
@@ -48,6 +49,11 @@ addBlock({ data }) {
 
                     if (Object.values(transaction.outputMap)[0] !== MINING_REWARD) {
                         console.error('Miner reward amount is invalid');
+                        return false;
+                    }
+                } else {
+                    if(!Transaction.validTransaction(transaction)) {
+                        console.error('Invalid transaction');
                         return false;
                     }
                 }
