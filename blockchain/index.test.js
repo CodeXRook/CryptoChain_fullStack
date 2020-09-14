@@ -140,7 +140,7 @@ describe('Blockchain', () => {
 
       describe('and the chain is valid', () => {
         beforeEach(() => {
-          blockchain.replaceChain(newChain.chain);
+          blockchain.replaceChain(newChain.chain)
         });
 
      it('replaces the chain', () => {
@@ -151,6 +151,14 @@ describe('Blockchain', () => {
           expect(logMock).toHaveBeenCalled();
         });
       });
+    });
+  });
+
+  describe('validTransactionData()', () => {
+    let transaction, rewardTransaction, wallet;
+
+    beforeEach(() => {
+
     });
   });
 });

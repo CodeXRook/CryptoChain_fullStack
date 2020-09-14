@@ -46,7 +46,7 @@ describe('Wallet', () => {
   describe('createTransaction()', () => {
     describe('and the amount exceeds the balance', () => {
       it('throws an error', () => {
-        expect(() => wallet.createTransaction({ amount: 999999, recipient: 'foo-recipient' }))
+        expect(() => wallet.createTransaction({ amount: 999999, recipient: 'foo-recipient' })
           .toThrow('Amount exceeds balance');
       });
     });
