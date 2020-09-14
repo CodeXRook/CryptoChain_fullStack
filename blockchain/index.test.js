@@ -6,15 +6,13 @@ const Wallet = require('../wallet');
 const Transaction = require('../wallet/transaction');
 
 describe('Blockchain', () => {
-  let blockchain, newChain, originalChain, errorMock;
+  let blockchain, newChain, originalChain;
 
   beforeEach(() => {
     blockchain = new Blockchain();
     newChain = new Blockchain();
-    errorMock = jest.fn();
 
     originalChain = blockchain.chain;
-    global.console.error = errorMock;
   });
 
   it('contains a `chain` Array instance', () => {
@@ -158,7 +156,11 @@ describe('Blockchain', () => {
     let transaction, rewardTransaction, wallet;
 
     beforeEach(() => {
-
+      wallet = new Wallet();
+      transaction = wallet.createTransaction({ recipient: 'foo-address', amount: 65 });
+      rewardTransaction = Transaction.rewardTransaction({ minerWallet: wallet });
     });
+
+    describe('and the transaction data is valid')
   });
 });
