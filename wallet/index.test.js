@@ -75,6 +75,14 @@ describe('Wallet', () => {
                 expect(transaction.outputMap[recipient]).toEqual(amount);
             });
         });
+
+        describe('and the amount is valid', () => {
+            it('calls `Wallet.calculateBalance`', () => {
+                const calculateBalanceMock = jest.fn();
+
+                
+            });
+        });
     });
 
     describe('calculateBalance()', () => {
@@ -111,17 +119,18 @@ describe('Wallet', () => {
 
             blockchain.addBlock({ data: [transactionOne, transactionTwo] });
          });
-       });
 
-       it('adds the sum of all outputs to the wallet balance', () => {
+         it('adds the sum of all outputs to the wallet balance', () => {
+       });
            expect( Wallet.calculateBalance({
             chain: blockchain.chain,
             address: wallet.publicKey
           })
-         ).toEqual( STARTING_BALANCE +
+         ).toEqual(
+         STARTING_BALANCE +
          transactionOne.outputMap[wallet.publicKey] +
          transactionTwo.outputMap[wallet.publicKey]    
-         ) 
+          ); 
        });
     });
 });
