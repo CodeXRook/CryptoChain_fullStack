@@ -1,5 +1,6 @@
 const Block = require('./block');
 const { cryptoHash } = require('../util');
+const { REWARD_INPUT, MINING_REWARD } = require('../config');
 
 class Blockchain {
 constructor() {
@@ -37,7 +38,19 @@ addBlock({ data }) {
             let rewardTransactionCount = 0;  
             
             for (let transaction of block.data) {
-                
+                if (transaction.input.address === REWARD_INPUT.address) {
+                    rewardTransactionCount +=1;
+
+                    if (rewardTransactionCount > 1) {
+                        console.error('Miner rewards exceed limit');
+                        return false;
+                    }
+
+                    if (Object.values(transaction.outputMap)[0] !== MINING_REWARD) {
+                        console.error('Miner reward amount is invalid');
+                        return false;
+                    }
+                }
             }
         }
 
