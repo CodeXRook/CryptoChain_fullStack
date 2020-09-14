@@ -161,6 +161,12 @@ describe('Blockchain', () => {
       rewardTransaction = Transaction.rewardTransaction({ minerWallet: wallet });
     });
 
-    describe('and the transaction data is valid')
+    describe('and the transaction data is valid', () => {
+      it('returns true', () => {
+        newChain.addBlock({ data: [transaction, rewardTransaction ] });
+
+        expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(true);
+      });
+    });
   });
 });
