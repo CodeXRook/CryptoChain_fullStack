@@ -51,7 +51,6 @@ app.post('/api/transact', (req, res) => {
             chain: blockchain.chain 
         });
        }
-      
     } catch(error) {
       return res.status(400).json({ type: 'error', message: error.message });
     }
@@ -73,9 +72,14 @@ app.get('/api/mine-transactions', (req, res) => {
     res.redirect('/api/blocks');
 });
 
-app.get('/apiwallet-info', (req,res) => {
-    
-})
+app.get('/api/wallet-info', (req,res) => { 
+    const address = wallet.publicKey;
+
+    res.json({ 
+    address,
+    balance: Wallet.calculateBalance({ chain: blockchian.chain, address })
+  });
+});
 
 const syncWithRootState = () => {
     request({ url: `${ ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) =>{
