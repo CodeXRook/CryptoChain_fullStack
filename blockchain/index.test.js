@@ -214,15 +214,22 @@ describe('Blockchain', () => {
           fooRecipient: 100
         };
 
-      const evilTransactoin = {
+      const evilTransaction = {
         input: {
-          
-        }
+          timestamp: Date.now(),
+          amount: wallet.balance,
+          address: wallet.publiceKey,
+          signature: wallet.sign(evilOutputMap)
+        },
       }
+        newChain.addBlock({ data: [evilTransaction, rewardTransaction ] });
+
+        expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);
+        expect(errorMock).toHaveBeenCalled();
       });
     });
 
-    describe('and a block contains mutiple identical transactions', () => {
+    describe('and a block contains multiple identical transactions', () => {
       it('returns false and logs an error', () => {});
     });
   });
