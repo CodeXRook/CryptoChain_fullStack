@@ -28,6 +28,7 @@ addBlock({ data }) {
             console.error('The incoming chain must be valid');
             return;
         }
+        if (!this)
 
         if(onSuccess) onSucccess();
         console.log('replacing chain with', chain);
@@ -37,6 +38,7 @@ addBlock({ data }) {
     validTransactionData({ chain }) {
         for (let i=1; i<chain.length; i++) {
             const block = chain[i];
+            const transactionSet = new Set();
             let rewardTransactionCount = 0;  
             
             for (let transaction of block.data) {
@@ -66,6 +68,12 @@ addBlock({ data }) {
                     if (transaction.input.amount !== trueBalnce) {
                         console.error('Invalid input amount');
                         return false;
+                    }
+                    if(transactionSet.has(transaction)) {
+                        console.error('An identical transaction apperes more than once in the block');
+                        return false;
+                    } else {
+                        transactionSet.add(Transaction);
                     }
                 }
             }
