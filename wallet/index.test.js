@@ -96,11 +96,32 @@ describe('Wallet', () => {
       });
 
       describe('and there are outputs for the wallet', () => {
-        lets transactionOne, transactionTwo;
+        let transactionOne, transactionTwo;
 
         beforeEach(() =>{
-            transactionOne = new Wallet().createTransaction()
-        })
+            transactionOne = new Wallet().createTransaction({
+                recipient: wallet.publicKey,
+                amount: 50
+            });
+
+            transactionTwo = new Wallet().createTransaction({
+                recipient: wallet.publicKey,
+                amount: 60
+            });
+
+            blockchain.addBlock({ data: [transactionOne, transactionTwo] });
+         });
+       });
+
+       it('adds the sum of all outputs to the wallet balance', () => {
+           expect( Wallet.calculateBalance({
+            chain: blockchain.chain,
+            address: wallet.publicKey
+          })
+         ).toEqual( STARTING_BALANCE +
+         transactionOne.outputMap[wallet.publicKey] +
+         transactionTwo.outputMap[wallet.publicKey]    
+         ) 
        });
     });
 });
