@@ -15,7 +15,7 @@ addBlock({ data }) {
     this.chain.push(newBlock);
  }
 
-    replaceChain(chain) {
+    replaceChain(chain, onSucccess) {
         if (chain.length <= this.chain.length) {
             console.error('The incoming chain must be longer');
             return;
@@ -26,6 +26,7 @@ addBlock({ data }) {
             return;
         }
 
+        if (onSuccess) onSucccess();
         console.log('replacing chain with', chain);
         this.chain = chain;
     }

@@ -1,7 +1,6 @@
 const Transaction = require('./transaction');
 const Wallet = require('./index');
 const { verifySignature } = require('../util');
-const { response } = require('express');
 const { REWARD_INPUT, MINING_REWARD } = require('../config');
 
 describe('Transaction', () => {

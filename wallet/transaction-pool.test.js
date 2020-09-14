@@ -12,15 +12,16 @@ describe('TransactionPool', () => {
     transaction = new Transaction({
       senderWallet,
       recipient: 'fake-recipient',
-      amount: 50,
+      amount: 50
     });
   });
 
   describe('setTransaction()', () => {
     it('adds a transaction', () => {
-      transactionPool.setTransaction(Transaction);
+      transactionPool.setTransaction(transaction);
 
-      expect(transactionPool.transactionMap[transaction.id]).toBe(Transaction);
+      expect(transactionPool.transactionMap[transaction.id])
+        .toBe(transaction);
     });
   });
 
@@ -29,9 +30,7 @@ describe('TransactionPool', () => {
       transactionPool.setTransaction(transaction);
 
       expect(
-        transactionPool.existingTransaction({
-          inputAdress: senderWallet.publicKey,
-        })
+        transactionPool.existingTransaction({ inputAddress: senderWallet.publicKey })
       ).toBe(transaction);
     });
   });
@@ -44,16 +43,16 @@ describe('TransactionPool', () => {
       errorMock = jest.fn();
       global.console.error = errorMock;
 
-      for (let i = 0; i < 10; i++) {
+      for (let i=0; i<10; i++) {
         transaction = new Transaction({
           senderWallet,
           recipient: 'any-recipient',
-          amount: 30,
+          amount: 30
         });
 
-        if (i%3 === 0) {
+        if (i%3===0) {
           transaction.input.amount = 999999;
-        } else if (i % 3 === 1) {
+        } else if (i%3===1) {
           transaction.input.signature = new Wallet().sign('foo');
         } else {
           validTransactions.push(transaction);
@@ -62,14 +61,14 @@ describe('TransactionPool', () => {
         transactionPool.setTransaction(transaction);
       }
     });
-    
+
     it('returns valid transaction', () => {
       expect(transactionPool.validTransactions()).toEqual(validTransactions);
     });
 
     it('logs errors for the invalid transactions', () => {
-        transactionPool.validTransactions();
-        expect(errorMock).toHaveBeenCalled();
+      transactionPool.validTransactions();
+      expect(errorMock).toHaveBeenCalled();
     });
   });
 
@@ -81,7 +80,7 @@ describe('TransactionPool', () => {
     });
   });
 
-  describe('clearBlockchainTransaction()', () => {
+  describe('clearBlockchainTransactions()', () => {
     it('clears the pool of any existing blockchain transactions', () => {
       const blockchain = new Blockchain();
       const expectedTransactionMap = {};
@@ -93,14 +92,16 @@ describe('TransactionPool', () => {
 
         transactionPool.setTransaction(transaction);
 
-        if (1%2===0) {
+        if (i%2===0) {
           blockchain.addBlock({ data: [transaction] })
         } else {
           expectedTransactionMap[transaction.id] = transaction;
         }
       }
 
-      transactionPool.clearBlockchainTransaction({ chain: blockchain.chain });
+      transactionPool.clearBlockchainTransactions({ chain: blockchain.chain });
+
+      expect(transactionPool.transactionMap).toEqual(expectedTransactionMap);
     });
   });
 });
