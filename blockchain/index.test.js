@@ -234,9 +234,9 @@ describe('Blockchain', () => {
         newChain.addBlock({
           data: [transaction, transaction, transaction, rewardTransaction]
         });
-        
-        expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);
 
+        expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);
+        expect(errorMock).toHaveBeenCalled();
       });
     });
   });
