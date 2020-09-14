@@ -152,7 +152,14 @@ describe('Blockchain', () => {
         });
       });
     });
+
+    describe('and the `validateTransaction` flag is true', () => {
+      it('calls validTransactionData()', () => {
+        const validTransactionDataMock = jest.fn();
+      })
+    });
   });
+
 
   describe('validTransactionData()', () => {
     let transaction, rewardTransaction, wallet;

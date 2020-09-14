@@ -28,9 +28,13 @@ addBlock({ data }) {
             console.error('The incoming chain must be valid');
             return;
         }
-        if (!this)
 
-        if(onSuccess) onSucccess();
+        if (validateTransactions && !this.validTransactionData({ chain })) {
+            console.error('The incoming chain has invalid data')
+            return;
+        }
+
+        if (onSuccess) onSucccess();
         console.log('replacing chain with', chain);
         this.chain = chain;
     }
