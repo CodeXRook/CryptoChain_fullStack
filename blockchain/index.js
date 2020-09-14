@@ -15,7 +15,7 @@ addBlock({ data }) {
     this.chain.push(newBlock);
  }
 
-    replaceChain(chain, onSucccess) {
+    replaceChain(chain, validateTransactions, onSucccess) {
         if (chain.length <= this.chain.length) {
             console.error('The incoming chain must be longer');
             return;
@@ -26,9 +26,22 @@ addBlock({ data }) {
             return;
         }
 
-        if (onSuccess) onSucccess();
-        console.log('replacing chain with',chain);
+        if(onSuccess) onSucccess();
+        console.log('replacing chain with', chain);
         this.chain = chain;
+    }
+
+    validTransactionData({ chain }) {
+        for (let i=1; i<chain.length; i++) {
+            const block = chain[i];
+            let rewardTransactionCount = 0;  
+            
+            for (let transaction of block.data) {
+                
+            }
+        }
+
+        return true;
     }
 
     static isValidChain(chain) {

@@ -193,6 +193,8 @@ describe('Blockchain', () => {
           rewardTransaction.outputMap[wallet.publicKey] = 999999;
 
           newChain.addBlock({ data: [transaction, rewardTransaction] });
+
+          expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);
         });
       });
     });
