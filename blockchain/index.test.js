@@ -64,8 +64,7 @@ describe('Blockchain', () => {
         });
       });
 
-      describe('and the chain contains a block with a jumped difficulty', () => {
-        it('returns false', () => {
+      describe('and the chain contains a block with a jumped difficulty', () => {it('returns false', () => {
           const lastBlock = blockchain.chain[blockchain.chain.length-1];
           const lastHash = lastBlock.hash;
           const timestamp = Date.now();
@@ -144,14 +143,14 @@ describe('Blockchain', () => {
           blockchain.replaceChain(newChain.chain);
         });
 
-        it('replaces the chain', () => {
+     it('replaces the chain', () => {
           expect(blockchain.chain).toEqual(newChain.chain);
         });
 
         it('logs about the chain replacement', () => {
           expect(logMock).toHaveBeenCalled();
         });
-     });
+      });
     });
   });
 });

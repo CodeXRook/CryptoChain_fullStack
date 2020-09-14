@@ -45,7 +45,11 @@ app.post('/api/transact', (req, res) => {
        if (transaction) {
         transaction.update({ senderWallet: wallet, recipient, amount });
        } else {
-        transaction = wallet.createTransaction({ recipient, amount });
+        transaction = wallet.createTransaction({ 
+            recipient, 
+            amount, 
+            chain: blockchain.chain 
+        });
        }
       
     } catch(error) {
@@ -68,6 +72,10 @@ app.get('/api/mine-transactions', (req, res) => {
 
     res.redirect('/api/blocks');
 });
+
+app.get('/apiwallet-info', (req,res) => {
+    
+})
 
 const syncWithRootState = () => {
     request({ url: `${ ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) =>{
