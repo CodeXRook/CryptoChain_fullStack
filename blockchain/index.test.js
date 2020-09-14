@@ -168,6 +168,7 @@ describe('Blockchain', () => {
         newChain.addBlock({ data: [transaction, rewardTransaction ] });
 
         expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(true);
+        expect(errorMock).not.toHaveBeenCalled();
       });
     });
 
@@ -205,7 +206,20 @@ describe('Blockchain', () => {
     });
 
     describe('and the transaction data has at least one malformed input', () => {
-      it('returns false and logs an error', () => {});
+      it('returns false and logs an error', () => {
+        wallet.balance = 9000;
+
+        const evilOutputMap = {
+          [wallet.publicKey]: 8900,
+          fooRecipient: 100
+        };
+
+      const evilTransactoin = {
+        input: {
+          
+        }
+      }
+      });
     });
 
     describe('and a block contains mutiple identical transactions', () => {
