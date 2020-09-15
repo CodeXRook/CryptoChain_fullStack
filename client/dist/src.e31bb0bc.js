@@ -99551,7 +99551,9 @@ var App = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       fetch('http://localhost:3000/api/wallet-info').then(function (response) {
-        return console.log('response', response);
+        return response.json();
+      }).then(function (json) {
+        return console.log('json', json);
       });
     }
   }, {
@@ -99580,7 +99582,7 @@ var _App = _interopRequireDefault(require("./components/App"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _reactDom.render)( /*#__PURE__*/_react.default.createElement(_App.default, null), document.getElementById('root'));
+(0, _reactDom.render)(_react.default.createElement(_App.default, null), document.getElementById('root'));
 },{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","./components/App":"components/App.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -99608,7 +99610,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53538" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49931" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
