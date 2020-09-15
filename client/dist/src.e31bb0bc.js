@@ -23142,13 +23142,19 @@ var App = /*#__PURE__*/function (_Component) {
     }
 
     return _possibleConstructorReturn(_this, (_temp = _this = _super.call.apply(_super, [this].concat(args)), _this.state = {
-      walletInfo: walletInfo
+      walletInfo: {
+        address: 'fooxv6',
+        balance: 9999
+      }
     }, _temp));
   }
 
   _createClass(App, [{
     key: "render",
     value: function render() {
+      var _this$state$walletInf = this.state.walletInfo,
+          address = _this$state$walletInf.address,
+          balance = _this$state$walletInf.balance;
       return _react.default.createElement("div", null, "Welcome to the BlockChain Folks...");
     }
   }]);
