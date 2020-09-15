@@ -1,10 +1,12 @@
+import { response } from 'express';
 import React, { Component } from 'react';
 
 class App extends Component {
     state = { walletInfo: {address: 'fooxv6', balance: 9999 } };
 
     componentDidMount(){
-        fetch('http://localhost:3000/api/wallet-info');
+        fetch('http://localhost:3000/api/wallet-info')
+        .then(response => console.log('response', response));
     }
 
   render() {
