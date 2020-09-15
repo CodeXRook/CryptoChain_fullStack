@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 class App extends Component {
     state = { walletInfo: {address: 'fooxv6', balance: 9999 } };
 
+    componentDidMount(){
+        fetch();
+    }
+
   render() {
       const {address, balance } = this.state.walletInfo;
       return (

@@ -23150,6 +23150,11 @@ var App = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(App, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      fetch();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$state$walletInf = this.state.walletInfo,
