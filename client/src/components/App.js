@@ -4,7 +4,7 @@ class App extends Component {
     state = { walletInfo: {address: 'fooxv6', balance: 9999 } };
 
     componentDidMount(){
-        fetch();
+        fetch('http://localhost:3000/api/wallet-info');
     }
 
   render() {

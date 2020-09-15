@@ -23152,7 +23152,7 @@ var App = /*#__PURE__*/function (_Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      fetch();
+      fetch('http://localhost:3000/api/wallet-info');
     }
   }, {
     key: "render",
