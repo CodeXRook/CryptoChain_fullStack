@@ -23155,7 +23155,7 @@ var App = /*#__PURE__*/function (_Component) {
       var _this$state$walletInf = this.state.walletInfo,
           address = _this$state$walletInf.address,
           balance = _this$state$walletInf.balance;
-      return _react.default.createElement("div", null, "Welcome to the BlockChain Folks...");
+      return _react.default.createElement("div", null, _react.default.createElement("div", null, "Welcome to BlockChain, Lets make Crypto"), _react.default.createElement("di", null, "Address: ", address), _react.default.createElement("div", null, "Balance: ", balance));
     }
   }]);
 
