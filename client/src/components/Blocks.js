@@ -6,6 +6,19 @@ class Blocks extends Component {
 
     componentDidMount() {
         fetch('http://localhost:3000/api/blocks')
-        .then
+        .then(response => response.json())
+        .then(json => this.setState({ blocks: json }));
+    }
+
+    render() {
+        console.log('this.state', this.state);
+
+        return (
+            <div>
+                <h3>Bear Blocks</h3>
+            </div>
+        );
     }
 }
+
+export default Blocks;
