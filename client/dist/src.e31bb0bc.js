@@ -23125,8 +23125,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var App = /*#__PURE__*/function (_Component) {
   _inherits(App, _Component);
 
@@ -23135,31 +23133,42 @@ var App = /*#__PURE__*/function (_Component) {
   function App() {
     var _this;
 
+    var _temp;
+
     _classCallCheck(this, App);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
+    return _possibleConstructorReturn(_this, (_temp = _this = _super.call.apply(_super, [this].concat(args)), _this.state = {
       walletInfo: {
         address: 'fooxv6',
         balance: 9999
       }
-    });
-
-    return _this;
+    }, _temp));
   }
 
   _createClass(App, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('http://localhost:3000/api/wallet-info').then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        return _this2.setState({
+          walletInfo: json
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$state$walletInf = this.state.walletInfo,
           address = _this$state$walletInf.address,
           balance = _this$state$walletInf.balance;
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, "Welcome to BearFace Crypto Blockchain..."), /*#__PURE__*/_react.default.createElement("div", null, "Adrress: ", address), /*#__PURE__*/_react.default.createElement("div", null, "Balance: ", balance));
+      return _react.default.createElement("div", null, _react.default.createElement("div", null, "Welcome to BearFace Crypto Blockchain..."), _react.default.createElement("div", null, "Adrress: ", address), _react.default.createElement("div", null, "Balance: ", balance));
     }
   }]);
 
@@ -23179,7 +23188,7 @@ var _App = _interopRequireDefault(require("./components/App"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _reactDom.render)( /*#__PURE__*/_react.default.createElement(_App.default, null), document.getElementById('root'));
+(0, _reactDom.render)(_react.default.createElement(_App.default, null), document.getElementById('root'));
 },{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","./components/App":"components/App.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -23207,7 +23216,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55239" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58008" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
