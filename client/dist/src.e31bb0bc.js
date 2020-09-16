@@ -23163,7 +23163,11 @@ var Blocks = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       console.log('this.state', this.state);
-      return _react.default.createElement("div", null, _react.default.createElement("h3", null, "Bear Blocks"));
+      return _react.default.createElement("div", null, _react.default.createElement("h3", null, "Bear Blocks"), this.state.blocks.map(function (block) {
+        return _react.default.createElement("div", {
+          key: block.hash
+        }, block.hash);
+      }));
     }
   }]);
 
