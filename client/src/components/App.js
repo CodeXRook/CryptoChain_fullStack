@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class App extends Component {
-    state = { walletInfo: { address: 'fooxv6', balance: 9999} };
+    state = { walletInfo: {} };
 
 componentDidMount() {
     fetch('http://localhost:3000/api/wallet-info')
@@ -17,7 +17,7 @@ componentDidMount() {
                 <div>
                 Welcome to BearFace Crypto Blockchain...
                 </div>
-                <div>Adrress: {address}</div>
+                <div>Address: {address}</div>
                 <div>Balance: {balance}</div>
             </div>
         );

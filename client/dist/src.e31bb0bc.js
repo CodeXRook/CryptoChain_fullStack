@@ -23142,10 +23142,7 @@ var App = /*#__PURE__*/function (_Component) {
     }
 
     return _possibleConstructorReturn(_this, (_temp = _this = _super.call.apply(_super, [this].concat(args)), _this.state = {
-      walletInfo: {
-        address: 'fooxv6',
-        balance: 9999
-      }
+      walletInfo: {}
     }, _temp));
   }
 
@@ -23168,7 +23165,7 @@ var App = /*#__PURE__*/function (_Component) {
       var _this$state$walletInf = this.state.walletInfo,
           address = _this$state$walletInf.address,
           balance = _this$state$walletInf.balance;
-      return _react.default.createElement("div", null, _react.default.createElement("div", null, "Welcome to BearFace Crypto Blockchain..."), _react.default.createElement("div", null, "Adrress: ", address), _react.default.createElement("div", null, "Balance: ", balance));
+      return _react.default.createElement("div", null, _react.default.createElement("div", null, "Welcome to BearFace Crypto Blockchain..."), _react.default.createElement("div", null, "Address: ", address), _react.default.createElement("div", null, "Balance: ", balance));
     }
   }]);
 
@@ -23216,7 +23213,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58008" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60616" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
