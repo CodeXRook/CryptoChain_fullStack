@@ -5,7 +5,7 @@ const Transaction = ({transaction}) => {
     const recipients = Object.keys(outputMap);
 
     return (
-        <div>
+        <div className='Transaction'>
             <div>From: {`${input.address.substring(0, 20)}...`} | Balance: {input.amount}</div>
             {
                 recipients.map(recipient => (
