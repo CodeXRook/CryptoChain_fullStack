@@ -22,7 +22,7 @@ class ConductTransaction extends Component {
             body: JSON.stringify({ recipient, amount })
         }).then(response => response.json())
         .then(json => {
-          alert(message || json.type);
+          alert(json.message || json.type);
        });
     }
 
@@ -40,7 +40,7 @@ class ConductTransaction extends Component {
                 />
              </FormGroup>
              <FormGroup>
-             <FormControl
+              <FormControl
                  input='number'
                  placeholder='amount'
                  value={this.state.amount}

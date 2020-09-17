@@ -46765,7 +46765,7 @@ var ConductTransaction = /*#__PURE__*/function (_Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (json) {
-        alert(message || json.type);
+        alert(json.message || json.type);
       });
     }, _temp));
   }
