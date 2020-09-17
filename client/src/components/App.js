@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Blocks from './Blocks';
 import logo from '../assets/logo.png';
 
 class App extends Component {
@@ -25,9 +24,7 @@ componentDidMount() {
                 <div className ='WalletInfo'>
                 <div>Address: {address}</div>
                 <div>Balance: {balance}</div>
-                </div>
-                <br />
-                <Blocks />
+                </div>       
             </div>
         );
     }
