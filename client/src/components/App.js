@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
+import logo from '../assets/bf.jpg';
 
 class App extends Component {
     state = { walletInfo: {} };
@@ -15,11 +16,14 @@ componentDidMount() {
 
         return (
             <div className='App'>
-            <img className='logo'src={logo}></img>
+            <img className='logo' src={logo}></img>
             <br />
                 <div>
                 Welcome to BearFace Crypto Blockchain...
                 </div>
+                <br />
+                <div><Link to='/blocks'>Blocks</Link></div>
+                <div><Link to='/conduct-transaction'>Conduct a Transactioin</Link></div>
                 <br />
                 <div className ='WalletInfo'>
                 <div>Address: {address}</div>

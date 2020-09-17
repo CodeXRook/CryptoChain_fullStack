@@ -38,6 +38,7 @@
     "history": "^4.7.2",
     "parcel-bundler": "^1.10.3",
     "pubnub": "^4.21.6",
+    "reac": "0.0.0",
     "react": "^16.6.0",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.0",
